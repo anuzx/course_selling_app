@@ -3,7 +3,9 @@ const router = Router();
 
 
 router.route("/signUp").post(async (req, res) => {
-await res.send("hello janu");
+    await res.json({
+    message:"hello"
+});
 });
 router.route("/singIn").post(async (req, res) => {
   await res.send("hello janu");

@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 
 
-app.use(express.json({ limit: "16kb" })); //data that we will take from form
+app.use(express.json({ limit: "16kb" })); //(used whenever the user want to send data in form on json)
 
 //data from url:
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
