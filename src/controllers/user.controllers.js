@@ -14,7 +14,7 @@ const signupUser = asyncHandler(async (req, red) => {
 
     //TODO : hash password using bcrypt so plain text password is not stored in databse
     
-  //now call userModel and create an entry in our databse with all the things mentioned in schema
+  //now call userModel and create an entry in your databse with all the things mentioned in schema
 
   await User.create({
     email: email,
