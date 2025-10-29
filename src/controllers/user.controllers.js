@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import mongoose, { mongo } from "mongoose";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { Purchase } from "../models/purchases.model.js";
+import { Course } from "../models/course.model.js";
 
 //for signup
 const signupUser = asyncHandler(async (req, red) => {
@@ -61,7 +63,42 @@ const signinUser = asyncHandler(async (req, res) => {
    
 })
 
+const purchaseByUser = asyncHandler(async (req, res) => {
+  //get course id and user id 
+  const userId = req.userId
+  const courseId = req.body.courseId
+//TODO: CHECK IF USER HAS PAID OR NOT
+  await Purchase.create({
+    userId,
+    courseId
+  })
+  
+})
+
+const previewCourse = asyncHandler(async (req, res) => {
+  const courses = await Course.find({});//empty object means all the courses 
+  res.json({
+    courses
+  })
+})
+
+const userPurchases = asyncHandler(async (req, res) => {
+  const userId = req.userId;
+
+
+  const purchases = await Purchase.find({
+    userId,
+    
+  });
+  req.json({
+    purchases
+  })
+})
+
 export {
     signupUser,
-    signinUser,
+  signinUser,
+  purchaseByUser,
+  previewCourse,
+    userPurchases
 }
